@@ -1,0 +1,13 @@
+{
+  "machine_name": "Demo Machine",
+  "parameters": {
+    "temperature": 45.0,
+    "pressure": 101.3,
+    "speed": 1200
+  },
+  "units": {
+    "temperature": "Celsius",
+    "pressure": "kPa",
+    "speed": "RPM"
+  }
+}
