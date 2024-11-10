@@ -5,7 +5,7 @@ app = Flask(__name__)
 # Ruta para descargar el archivo .obj
 @app.route('/model', methods=['GET'])
 def download_model():
-    return send_file('path/to/your/model.obj', as_attachment=True)
+    return send_file('cube.obj', as_attachment=True)
 
 # Ruta para obtener los parámetros en formato .json
 @app.route('/parameters', methods=['GET'])
