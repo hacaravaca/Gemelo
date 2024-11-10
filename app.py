@@ -2,27 +2,23 @@ from flask import Flask, send_file, jsonify
 
 app = Flask(__name__)
 
-# Ruta para descargar el archivo .obj
-@app.route('/model', methods=['GET'])
-def download_model():
-    return send_file('cube.obj', as_attachment=True)
+# Ruta para obtener el archivo .obj
+@app.route('/get_obj', methods=['GET'])
+def get_obj():
+    try:
+        return send_file('cube.obj', mimetype='application/octet-stream', as_attachment=True)
+    except Exception as e:
+        return str(e), 500
 
-# Ruta para obtener los parámetros en formato .json
-@app.route('/parameters', methods=['GET'])
-def get_parameters():
-    return jsonify({
-        "machine_name": "Demo Machine",
-        "parameters": {
-            "temperature": 45.0,
-            "pressure": 101.3,
-            "speed": 1200
-        },
-        "units": {
-            "temperature": "Celsius",
-            "pressure": "kPa",
-            "speed": "RPM"
-        }
-    })
+# Ruta para obtener el archivo .json
+@app.route('/get_json', methods=['GET'])
+def get_json():
+    try:
+        with open('J.json', 'r') as json_file:
+            data = json_file.read()
+        return jsonify(data)
+    except Exception as e:
+        return str(e), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
